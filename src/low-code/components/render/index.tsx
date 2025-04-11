@@ -1,4 +1,4 @@
-import { createRef, useEffect } from "react";
+import { createRef } from "react";
 import { useFormRenderStore } from "../../data-center/form-render";
 import { saveFormValue } from "../../api";
 import { Field, FormProvider } from "@formily/react";
@@ -53,7 +53,6 @@ export const FormRender = () => {
     window.location.href = "/";
   };
 
-  console.log(fields, formLayout);
   return (
     <div style={{padding: "16px"}}>
       <h1>编辑表单</h1>

@@ -1,7 +1,7 @@
-import { connect, mapProps, useField, useForm } from "@formily/react";
+import { connect, mapProps, useForm } from "@formily/react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Item = (props: any) => {
-  const { label, name, required } = props;
+  const { name, required } = props;
   const style = {};
 
   const form = useForm();

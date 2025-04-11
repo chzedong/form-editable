@@ -19,6 +19,7 @@ class Sign {
 
   maxSecond = 1000;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handlerWrapper = (id: string, handler: any) => {
     const now = Date.now();
     const oldStamp = this.stampSign[id]?.stamp;
@@ -38,7 +39,6 @@ class Sign {
     // 增加次数
     this.stampSign[id].num++;
 
-    console.log("gap", gap);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return async (...args: any[]) => {
       await new Promise((resolve) => setTimeout(resolve, gap));

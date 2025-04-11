@@ -59,7 +59,6 @@ export class ReactionRegistry {
     this.form.addEffects(id, () => {
       onFieldReact(id, () => {
         // pre task sign no valid
-        console.log("!!!!!!!");
         const preTasks = this.task.get(id);
         if (preTasks) {
           preTasks.forEach((task) => {
