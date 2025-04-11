@@ -1,16 +1,25 @@
 import { useRef } from "react";
 import { Plugin } from "../../type";
-import { createForm, Form, onFormMount, onFormValuesChange } from "@formily/core";
+import {
+  createForm,
+  Form,
+  onFormMount,
+  onFormValuesChange,
+} from "@formily/core";
 import { TextField, TextFormValues } from ".";
 import { createSchemaField, FormProvider } from "@formily/react";
-import { Input } from "antd";
+import {  Input, InputNumber } from "antd";
 import { FormItem } from "../form-item";
 import "./index.css";
+import { Checkbox } from "../checkbox";
 
 const field2FormValues = (field: TextField): TextFormValues => {
   return {
     label: field.config.label,
     placeholder: field.config.placeholder,
+    required: field.config.validation.required,
+    gte: field.config.validation.gte || undefined,
+    lte: field.config.validation.lte || undefined,
   };
 };
 
@@ -23,6 +32,11 @@ const formValues2Field = (
     config: {
       label: values.label,
       placeholder: values.placeholder,
+      validation: {
+        required: values.required,
+        gte: values.gte || null,
+        lte: values.lte || null,
+      },
     },
   };
 };
@@ -31,6 +45,8 @@ const SchemaField = createSchemaField({
   components: {
     Input,
     FormItem,
+    Checkbox,
+    InputNumber
   },
 });
 
@@ -71,7 +87,7 @@ export const ConfigPanel: Plugin["provides"]["configPanel"] = (props) => {
                 },
                 "x-decorator": "FormItem",
                 "x-decorator-props": {
-                  label: "输入框",
+                  label: "字段名称",
                   name: "label",
                 },
                 required: true,
@@ -88,6 +104,38 @@ export const ConfigPanel: Plugin["provides"]["configPanel"] = (props) => {
                   name: "placeholder",
                 },
               },
+              // 是否必填
+              required: {
+                type: "boolean",
+                "x-component": "Checkbox",
+                "x-component-props": {
+                  valuePropName: "checked", // 添加这一行
+                },
+                "x-decorator": "FormItem",
+                "x-decorator-props": {
+                  label: "是否必填",
+                  name: "required",
+                },
+              },
+              gte: {
+                type: "number",
+                "x-component": "InputNumber",
+                "x-decorator": "FormItem",
+                "x-decorator-props": {
+                  label: "最小值",
+                  name: "gte",
+                },
+              },
+              lte: {
+                type: "number",
+                "x-component": "InputNumber",
+                "x-decorator": "FormItem",
+                "x-decorator-props": {
+                  label: "最大值",
+                  name: "lte",
+                },
+              },
+
             },
           }}
         />

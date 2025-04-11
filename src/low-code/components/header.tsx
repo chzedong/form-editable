@@ -7,9 +7,9 @@ export const Header = () => {
 
   const submit = () => {
     dispatch({ type: "SUBMIT" });
+    window.location.href = "/render";
   };
 
-  console.log(state)
   return (
     <div className="layout-header">
       {state.appMeta.name}

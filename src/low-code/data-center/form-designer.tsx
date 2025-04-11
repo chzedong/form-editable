@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useContext, ReactNode } from "react";
 import { AppMeta } from "../type";
 import registry from "./prepare";
 import { FormDesignerState, Action, ContextType } from "./types";
+import { saveAppFields } from "../api";
 
 const initialState: FormDesignerState = {
   registry,
@@ -44,8 +45,8 @@ export const FormDesignerProvider: React.FC<{
           };
         case "SUBMIT":
           // 模拟提交
-          console.log("提交数据： ", state.formLayout, state.fields);
-          return { ...state };
+          saveAppFields(state.appMeta.id, state.fields, state.formLayout)
+          return { ...state, fields: {}, formLayout: [], anchorFieldId: undefined};
         case "COMMON":
           return {
             ...state,

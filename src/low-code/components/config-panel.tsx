@@ -28,6 +28,7 @@ export const ConfigPanel = () => {
       <ConfigPanelComponent
         key={anchorFieldId}
         field={field}
+        fields={fields}
         handleField={handleField}
       />
     </div>
