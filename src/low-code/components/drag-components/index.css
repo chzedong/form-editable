@@ -15,3 +15,9 @@
     height: 30px;
   }
 }
+
+
+.drag-components-hover {
+  position: absolute;
+  background-color:#094eae
+}
